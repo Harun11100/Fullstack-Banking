@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import {Inter,IBM_Plex_Serif} from "next/font/google"
-import "./globals.css";
+import "./global.css";
 
 
 
@@ -12,10 +11,10 @@ const inter = Inter({
 });
 const ibm_plex =IBM_Plex_Serif({
   subsets:["latin"],
-  variable: "--font-ibm_plex_serif",
+  variable: "--font-ibm-plex-serif",
   weight:['400','700']
  
-}); 
+});  
 
 export const metadata: Metadata = {
   title:"World Bank",
@@ -33,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${ibm_plex.variable} antialiased`}
+        className={`${inter.variable} ${ibm_plex.variable}`}
       >
         {children}
       </body>
