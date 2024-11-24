@@ -37,7 +37,7 @@ export default function Home() {
     <RightSideBar
     user={LoggedIn}
     transactions={[]}
-    banks={[{},{}]}/>
+    banks={[{currentBalance:342.9},{currentBalance:234.25}]}/>
   </section>
   );
 }
