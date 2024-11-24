@@ -39,7 +39,7 @@ className=' cursor-pointer flex items-center gap-1 px-3'
  width={34}
  height={34}
  />
- <h1 className='text-26 font-ibm-plex-serif'>World_Bank</h1>
+ <h1 className='text-26 font-ibm-plex-serif'>World Bank</h1>
 </Link> 
 
 <div className='mobilenav-sheet'>
