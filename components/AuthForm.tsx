@@ -19,7 +19,8 @@ import { useRouter } from 'next/navigation';
 
 import PlaidLink from './PlaidLink';
 import CustomInput from './CustomInput';
-import { signIn, signUp } from '@/lib/actions/user.actions';
+
+import { authFormSchema } from '@/lib/utils';
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   const formSchema = authFormSchema(type);
 
-    // 1. Define your form.
+  
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
@@ -36,46 +37,11 @@ const AuthForm = ({ type }: { type: string }) => {
         password: ''
       },
     })
-   
-    // 2. Define a submit handler.
+
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
       setIsLoading(true);
 
-      try {
-        // Sign up with Appwrite & create plaid token
-        
-        if(type === 'sign-up') {
-          const userData = {
-            firstName: data.firstName!,
-            lastName: data.lastName!,
-            address1: data.address1!,
-            city: data.city!,
-            state: data.state!,
-            postalCode: data.postalCode!,
-            dateOfBirth: data.dateOfBirth!,
-            ssn: data.ssn!,
-            email: data.email,
-            password: data.password
-          }
-
-          const newUser = await signUp(userData);
-
-          setUser(newUser);
-        }
-
-        if(type === 'sign-in') {
-          const response = await signIn({
-            email: data.email,
-            password: data.password,
-          })
-
-          if(response) router.push('/')
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
+   
     }
 
   return (

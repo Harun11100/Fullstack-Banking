@@ -5,7 +5,6 @@ export default function RootLayout({children,
     }>) {
       return (
        <main>
-          SignUP AND In
           {children}
        </main>
       );
