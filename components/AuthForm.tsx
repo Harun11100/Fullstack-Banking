@@ -21,6 +21,7 @@ import PlaidLink from './PlaidLink';
 import CustomInput from './CustomInput';
 
 import { authFormSchema } from '@/lib/utils';
+import { signIn, signUp } from '@/lib/actions/user.actions';
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const AuthForm = ({ type }: { type: string }) => {
             // const userData={
             //   firstName:data.firstName,
             //   lastName:data.lastName,
-            //   email:data.email,
+            //   email:data.email, 
             //   city:data.city,
             //   address:data.address1,
             //   postalCode:data.postalCode,
