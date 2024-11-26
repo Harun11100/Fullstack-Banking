@@ -45,6 +45,11 @@ const AuthForm = ({ type }: { type: string }) => {
           
 
           if(type==='sign-up'){
+            
+          const newUser= await signUp(data);
+           
+          setUser(newUser)
+
 
             // const userData={
             //   firstName:data.firstName,
@@ -59,20 +64,16 @@ const AuthForm = ({ type }: { type: string }) => {
             //   dateOfBirth:data.dateOfBirth,
             // }
 
-          const newUser= await signUp(data);
-           
-          setUser(newUser)
-
           }
-          if(type==='sign-in'){
-            const currentUser= await signIn({
-              email:data.email,
-              password:data.password
-            });
+          // if(type==='sign-in'){
+          //   const currentUser= await signIn({
+          //     email:data.email,
+          //     password:data.password
+          //   });
            
-            if(currentUser)router.push('/')
+          //   if(currentUser)router.push('/')
             
-          }
+          // }
 
           
         } catch (error) {
