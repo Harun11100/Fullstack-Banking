@@ -3,12 +3,21 @@ import { cookies } from 'next/headers'
 import {createSessionClient, createAdminClient} from './appwrte'
 import { parseStringify } from '../utils'
 import { ID } from 'node-appwrite'
-export const signIn=async ()=>{
+
+
+
+export const signIn=async({email,password}:signInProps)=>{
 
       try {
       //Mutation// database// Make fetch
 
+      const { account } = await createAdminClient();
+      const response= await account.createEmailPasswordSession(
+            email,
+            password,
+      )
 
+      return parseStringify(response)
             
       } catch (error) {
             

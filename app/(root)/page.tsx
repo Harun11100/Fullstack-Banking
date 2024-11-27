@@ -2,16 +2,17 @@ import RightSideBar from "@/components/RightSideBar";
 import { Button } from "@/components/ui/button";
 import HeaderBox from "@/components/ui/HeaderBox";
 import TotalBalanceBox from "@/components/ui/TotalBalanceBox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { LassoSelect } from "lucide-react";
 import Image from "next/image";
 
-export default function Home() {
+ const Home = async() =>{
 
-      const LoggedIn={
-            firstName:"Md Harun",
-            lastName:"Or Rashid",
-            email:"harun20011112@gmail.com"
-      }
+     
+  
+  const loggedIn= await getLoggedInUser()
+ 
+
   return (
   <section className="home">
     <div className="home-content"> 
@@ -19,7 +20,7 @@ export default function Home() {
       <HeaderBox
          type='greeting'
          title="Welcome"
-         user={LoggedIn?.firstName ||'Guest'}
+         user={loggedIn?.name ||'Guest'}
          subtext="Access and manage your account" 
          />
 
@@ -35,9 +36,10 @@ export default function Home() {
 
     </div>
     <RightSideBar
-    user={LoggedIn}
+    user={loggedIn}
     transactions={[]}
     banks={[{currentBalance:342.9},{currentBalance:234.25}]}/>
   </section>
   );
 }
+export default Home
