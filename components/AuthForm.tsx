@@ -21,7 +21,7 @@ import PlaidLink from './PlaidLink';
 import CustomInput from './CustomInput';
 
 import { authFormSchema } from '@/lib/utils';
-import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
+import {  signIn, signUp } from '@/lib/actions/user.actions';
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();

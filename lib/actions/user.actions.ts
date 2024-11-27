@@ -68,6 +68,8 @@ export async function getLoggedInUser() {
       }
     }
 
+
+
 export const logoutAccount=async ()=>{
 
       try {
@@ -79,6 +81,7 @@ export const logoutAccount=async ()=>{
 
       } catch (error) {
             console.log('Error from logout',error)
+            return null
         
             
       }
