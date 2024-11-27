@@ -1,15 +1,16 @@
 import MobileNavbar from "@/components/MobileNavbar";
 import SideBar from "@/components/ui/SideBar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
 
   
-  const loggedIn ={firstName:'Harun ',lastName:'Or Rashid'}
+  const loggedIn =await getLoggedInUser()
   return (
 
 

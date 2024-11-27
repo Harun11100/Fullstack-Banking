@@ -211,6 +211,7 @@ declare type SearchParamProps = {
     
     declare interface FooterProps {
       user: User;
+      type?: 'mobile'|'desktop';
     }
     
     declare interface RightSidebarProps {
