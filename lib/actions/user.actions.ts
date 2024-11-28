@@ -2,7 +2,7 @@
 import { cookies } from 'next/headers'
 import {createSessionClient, createAdminClient} from './appwrte'
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from '../utils'
-import { ID } from 'node-appwrite'
+import { ID, Query } from 'node-appwrite'
 import { plaidClient } from '../plaid'
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from 'plaid'
 import { revalidatePath } from 'next/cache'
@@ -13,6 +13,22 @@ const {
       APPWRITE_USER_COLLECTION_ID:USER_COLLECTION_ID
 }=process.env
 
+
+export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+      try {
+        const { database } = await createAdminClient();
+    
+        const user = await database.listDocuments(
+          DATABASE_ID!,
+          USER_COLLECTION_ID!,
+          [Query.equal('userId', [userId])]
+        )
+    
+        return parseStringify(user.documents[0]);
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
 export const signIn=async({email,password}:signInProps)=>{
 
@@ -30,8 +46,12 @@ export const signIn=async({email,password}:signInProps)=>{
             sameSite: "strict",
             secure: true,
           });
+
+      const user =await getUserInfo({
+            userId:session.userId
+      })    
       
-      return parseStringify(session)
+      return parseStringify(user)
             
       } catch (error) {
             
@@ -115,12 +135,17 @@ export const signUp=async ({password,...userData}:SignUpParams)=>{
     
 
 
-export async function getLoggedInUser() {
+
+    export async function getLoggedInUser() {
       try {
         const { account } = await createSessionClient();
-        return await account.get();
+        const result = await account.get();
+    
+        const user = await getUserInfo({ userId: result.$id})
+    
+        return parseStringify(user);
       } catch (error) {
-            console.log(error)
+        console.log(error)
         return null;
       }
     }
@@ -259,3 +284,35 @@ export const createLinkToken = async (user: User) => {
         console.error("An error occurred while creating exchanging token:", error);
       }
     }
+
+    export const getBanks = async ({ userId }: getBanksProps) => {
+      try {
+        const { database } = await createAdminClient();
+    
+        const banks = await database.listDocuments(
+          DATABASE_ID!,
+          BANK_COLLECTION_ID!,
+          [Query.equal('userId', [userId])]
+        )
+    
+        return parseStringify(banks.documents);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+    export const getBank = async ({ documentId }: getBankProps) => {
+      try {
+        const { database } = await createAdminClient();
+    
+        const bank = await database.listDocuments(
+          DATABASE_ID!,
+          BANK_COLLECTION_ID!,
+          [Query.equal('$id', [documentId])]
+        )
+    
+        return parseStringify(bank.documents[0]);
+      } catch (error) {
+        console.log(error)
+      }
+    } 
