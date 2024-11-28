@@ -15,7 +15,8 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import { sidebarLinks } from '@/constant'
-const MobileNavbar = () => {
+import Footer from './Footer'
+const MobileNavbar = ({user}:SiderbarProps) => {
       const pathname=usePathname()
   return (
       <section className='w-full max-w-[264px] '>
@@ -75,7 +76,7 @@ className=' cursor-pointer flex items-center gap-1 px-3'
 
       </SheetClose>
       
-      FOOTER
+      <Footer user={user} type='mobile'/>
 </div>
 
 
