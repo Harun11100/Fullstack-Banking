@@ -6,7 +6,7 @@ import { ID } from 'node-appwrite'
 import { plaidClient } from '../plaid'
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from 'plaid'
 import { revalidatePath } from 'next/cache'
-import { createDwollaCustomer } from './dwolla.actions'
+import { addFundingSource, createDwollaCustomer } from './dwolla.actions'
 const {
       APPWRITE_DATABASE_ID:DATABASE_ID,
       APPWRITE_BANK_COLLECTION_ID:BANK_COLLECTION_ID,
@@ -42,10 +42,9 @@ export const signIn=async({email,password}:signInProps)=>{
 }
 
 
+export const signUp=async ({password,...userData}:SignUpParams)=>{
 
-export const signUp=async (userData:SignUpParams)=>{
-
-      const {email,password,firstName,lastName}=userData;
+      const {email,firstName,lastName}=userData;
 
       let newUserAccount;  
 
@@ -70,12 +69,14 @@ export const signUp=async (userData:SignUpParams)=>{
             type:'personal'
       })
 
+
+
       if(!dowllaCustomerUrl){
             throw new Error("Error creating dwollaCustomer");
             
       }
 
-      const dwollaCustomerId=extractCustomerIdFromUrl(dowllaCustomerUrl)
+      const dowllaCustomerId=extractCustomerIdFromUrl(dowllaCustomerUrl)
       const newUser =await database.createDocument(
             DATABASE_ID!,
             USER_COLLECTION_ID!,
@@ -83,7 +84,7 @@ export const signUp=async (userData:SignUpParams)=>{
             {
                   ...userData,
                   userId:newUserAccount.$id,
-                  dwollaCustomerId,
+                  dowllaCustomerId,
                   dowllaCustomerUrl
 
 
@@ -107,6 +108,11 @@ export const signUp=async (userData:SignUpParams)=>{
       }
 
 }
+
+
+
+
+    
 
 
 export async function getLoggedInUser() {
