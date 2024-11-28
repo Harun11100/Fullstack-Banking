@@ -46,23 +46,25 @@ const AuthForm = ({ type }: { type: string }) => {
 
           if(type==='sign-up'){
             
-          const newUser= await signUp(data);
+         
+
+
+            const userData={
+              firstName:data.firstName,
+              lastName:data.lastName,
+              email:data.email, 
+              city:data.city,
+              address:data.address1,
+              postalCode:data.postalCode,
+              ssn:data.ssn,
+              state:data.state,
+              password:data.password,
+              dateOfBirth:data.dateOfBirth,
+            }
+
+            const newUser= await signUp(userData);
            
-          setUser(newUser)
-
-
-            // const userData={
-            //   firstName:data.firstName,
-            //   lastName:data.lastName,
-            //   email:data.email, 
-            //   city:data.city,
-            //   address:data.address1,
-            //   postalCode:data.postalCode,
-            //   ssn:data.ssn,
-            //   state:data.state,
-            //   password:data.password,
-            //   dateOfBirth:data.dateOfBirth,
-            // }
+            setUser(newUser)
 
           }
           if(type==='sign-in'){
