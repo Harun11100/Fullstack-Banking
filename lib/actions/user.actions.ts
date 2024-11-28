@@ -12,19 +12,29 @@ export const signIn=async({email,password}:signInProps)=>{
       //Mutation// database// Make fetch
 
       const { account } = await createAdminClient();
-      const response= await account.createEmailPasswordSession(
+      const session= await account.createEmailPasswordSession(
             email,
             password,
       )
-
-      return parseStringify(response)
+      cookies().set("appwrite-session", session.secret, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "strict",
+            secure: true,
+          });
+      
+      return parseStringify(session)
             
       } catch (error) {
             
             console.log(error)
       }
 
+
 }
+
+
+
 export const signUp=async (userData:SignUpParams)=>{
 
       const {email,password,firstName,lastName}=userData;
