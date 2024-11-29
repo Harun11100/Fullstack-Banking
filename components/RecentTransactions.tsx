@@ -57,8 +57,8 @@ const RecentTransactions = ({
               type="full"
             />
 
-            <TransactionTable transactions={currentTransactions} />
-            
+            {/* <TransactionTable transactions={currentTransactions} />
+             */}
 
             {totalPages > 1 && (
               <div className="my-4 w-full">

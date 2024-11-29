@@ -60,9 +60,9 @@ const currentTransactions = account?.transactions.slice(
         </div>
 
         <section className="flex w-full flex-col gap-6">
-          <TransactionsTable
+          {/* <TransactionsTable
             transactions={currentTransactions}
-          />
+          /> */}
             {totalPages > 1 && (
               <div className="my-4 w-full">
                 <Pagination totalPages={totalPages} page={currentPage} />
