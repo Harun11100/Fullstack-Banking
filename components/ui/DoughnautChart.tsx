@@ -16,7 +16,7 @@ const DoughnautChart = ({accounts}:DoughnutChartProps) => {
       datasets:[
             {
                   label:'Banks',
-                  data:[200,500,300],
+                  data:balances,
                   backgroundColor:['#0747b6' ,'#2265d8','#2f91fa']
 
             }

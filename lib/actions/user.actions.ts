@@ -84,19 +84,19 @@ export const signUp=async ({password,...userData}:SignUpParams)=>{
             
       }
 
-      const dowllaCustomerUrl=await createDwollaCustomer({
+      const dwollaCustomerUrl=await createDwollaCustomer({
             ...userData,
             type:'personal'
       })
 
 
 
-      if(!dowllaCustomerUrl){
+      if(!dwollaCustomerUrl){
             throw new Error("Error creating dwollaCustomer");
             
       }
 
-      const dowllaCustomerId=extractCustomerIdFromUrl(dowllaCustomerUrl)
+      const dwollaCustomerId=extractCustomerIdFromUrl(dwollaCustomerUrl)
       const newUser =await database.createDocument(
             DATABASE_ID!,
             USER_COLLECTION_ID!,
@@ -104,8 +104,8 @@ export const signUp=async ({password,...userData}:SignUpParams)=>{
             {
                   ...userData,
                   userId:newUserAccount.$id,
-                  dowllaCustomerId,
-                  dowllaCustomerUrl
+                  dwollaCustomerId,
+                  dwollaCustomerUrl
 
 
             }
