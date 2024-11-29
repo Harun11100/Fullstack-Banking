@@ -1,13 +1,13 @@
 import {
       Table,
       TableBody,
-      TableCaption,
       TableCell,
       TableHead,
       TableHeader,
       TableRow,
     } from "@/components/ui/table"
-    import { transactionCategoryStyles } from "@/constants"
+import { transactionCategoryStyles } from "@/constant"
+
     import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from "@/lib/utils"
     
     const CategoryBadge = ({ category }: CategoryBadgeProps) => {

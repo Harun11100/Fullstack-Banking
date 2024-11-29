@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import BankTab from './BankTab';
+import {BankTab} from './BankTab';
 import BankInfo from './BankInfo'
-import Pagination from './Pagination';
+import  {Pagination} from './Pagination';
 import TransactionTable from './TransactionTable';
 const RecentTransactions = ({
   accounts,
