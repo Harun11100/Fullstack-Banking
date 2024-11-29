@@ -1,3 +1,4 @@
+import RecentTransactions from "@/components/RecentTransactions";
 import RightSideBar from "@/components/RightSideBar";
 import { Button } from "@/components/ui/button";
 import HeaderBox from "@/components/ui/HeaderBox";
@@ -9,7 +10,7 @@ import Image from "next/image";
 
  const Home = async({searchParams:{id,page}}:SearchParamProps) =>{
 
-     
+   const currentPage=Number(page as string)||1
   
   const loggedIn= await getLoggedInUser()
   
@@ -25,7 +26,7 @@ import Image from "next/image";
     appwriteItemId
    })
 
-   console.log(loggedIn)
+  
 
   return (
   <section className="home">
@@ -43,11 +44,7 @@ import Image from "next/image";
       totalCurrentBalance={accounts.totalCurrentBalance}
       />
       </header>
-
-      Recent Actions
-        
-     
-
+     <RecentTransactions accounts={accountData} transactions={account?.transactions} appwriteItemId={appwriteItemId} page={currentPage}/>
     </div>
     <RightSideBar
     user={loggedIn}

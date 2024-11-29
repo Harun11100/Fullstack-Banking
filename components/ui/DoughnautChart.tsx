@@ -8,18 +8,20 @@ import {Chart as ChartJS, ArcElement,Tooltip} from 'chart.js'
 ChartJS.register(ArcElement,Tooltip)
 
 const DoughnautChart = ({accounts}:DoughnutChartProps) => {
+      const accountNames=accounts.map(a=>a.name)
+      const balances=accounts.map(a=>a.currentBalance)
 
   const data = {
 
       datasets:[
             {
                   label:'Banks',
-                  data:[1253,342,1231],
+                  data:[200,500,300],
                   backgroundColor:['#0747b6' ,'#2265d8','#2f91fa']
 
             }
       ],
-      labels:['Bank 1','Bank 2', 'Bank 3']
+      labels:accountNames
   }
 
 
