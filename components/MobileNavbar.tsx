@@ -40,7 +40,7 @@ className=' cursor-pointer flex items-center gap-1 px-3'
  width={34}
  height={34}
  />
- <h1 className='text-26 font-ibm-plex-serif'>World Bank</h1>
+ <h1 className='text-26 font-ibm-plex-serif'>Horizon</h1>
 </Link> 
 
 <div className='mobilenav-sheet'>
@@ -71,16 +71,14 @@ className=' cursor-pointer flex items-center gap-1 px-3'
        </SheetClose>
      
 )})}
-   USER
+
+
             </nav>
 
       </SheetClose>
       
       <Footer user={user} type='mobile'/>
 </div>
-
-
- User
 
 </nav>
       </SheetContent>

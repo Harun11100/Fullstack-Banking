@@ -19,7 +19,7 @@ const ibm_plex =IBM_Plex_Serif({
 });  
 
 export const metadata: Metadata = {
-  title:"World Bank",
+  title:"Horizon",
   description: "Modern banking platform for everynone",
   icons:{
     icon:'/icons/logo.svg'
