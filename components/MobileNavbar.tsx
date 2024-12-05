@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import { sidebarLinks } from '@/constant'
 import Footer from './Footer'
+import PlaidLink from './PlaidLink'
 const MobileNavbar = ({user}:SiderbarProps) => {
       const pathname=usePathname()
   return (
@@ -72,7 +73,7 @@ className=' cursor-pointer flex items-center gap-1 px-3'
      
 )})}
 
-
+<PlaidLink user={user} />
             </nav>
 
       </SheetClose>
